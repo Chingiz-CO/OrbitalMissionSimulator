@@ -55,5 +55,14 @@ int main()
     simulator.runSimulation(numberOfOrbits);
     simulator.printMissionReport();
 
+    double newAltitude;
+
+    std::cout << "\nEnter new altitude to adjust orbit (km): ";
+    std::cin >> newAltitude;
+
+    simulator.changeOrbitAltitude(newAltitude);
+
+    simulator.printMissionReport();
+
     return 0;
 }

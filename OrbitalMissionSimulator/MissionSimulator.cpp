@@ -60,3 +60,26 @@ int MissionSimulator::getCompletedOrbits() const
 {
     return completedOrbits_;
 }
+
+void MissionSimulator::changeOrbitAltitude(double newAltitudeKm)
+{
+    if (newAltitudeKm <= 0)
+    {
+        std::cout << "Invalid altitude.\n";
+        return;
+    }
+
+    satellite_.setAltitudeKm(newAltitudeKm);
+
+    std::cout << "\nOrbit altitude changed to "
+        << newAltitudeKm
+        << " km.\n";
+
+    std::cout << "New orbital velocity: "
+        << satellite_.calculateOrbitalVelocity()
+        << " km/s\n";
+
+    std::cout << "New orbital period: "
+        << satellite_.calculateOrbitalPeriod()
+        << " seconds\n";
+}

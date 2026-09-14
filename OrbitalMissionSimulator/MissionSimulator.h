@@ -12,6 +12,7 @@ private:
 
 public:
     MissionSimulator(const Satellite& satellite);
+    void changeOrbitAltitude(double newAltitudeKm);
 
     void runSimulation(int numberOfOrbits);
     void printMissionReport() const;
