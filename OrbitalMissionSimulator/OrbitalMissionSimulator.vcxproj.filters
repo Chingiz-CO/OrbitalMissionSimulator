@@ -18,5 +18,19 @@
     <ClCompile Include="OrbitalMissionSimulator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Satellite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MissionSimulator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Satellite.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MissionSimulator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
