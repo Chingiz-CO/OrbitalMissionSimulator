@@ -1,0 +1,62 @@
+#include "MissionSimulator.h"
+#include <iostream>
+#include <iomanip>
+
+MissionSimulator::MissionSimulator(const Satellite& satellite)
+    : satellite_(satellite),
+    elapsedTimeSeconds_(0.0),
+    completedOrbits_(0)
+{
+}
+
+void MissionSimulator::runSimulation(int numberOfOrbits)
+{
+    if (numberOfOrbits <= 0)
+    {
+        std::cout << "Number of orbits must be greater than zero.\n";
+        return;
+    }
+
+    double orbitalPeriod = satellite_.calculateOrbitalPeriod();
+
+    std::cout << "\nStarting mission simulation...\n";
+
+    for (int orbit = 1; orbit <= numberOfOrbits; orbit++)
+    {
+        elapsedTimeSeconds_ += orbitalPeriod;
+        completedOrbits_++;
+
+        std::cout << "Orbit " << orbit
+            << " completed after "
+            << std::fixed << std::setprecision(2)
+            << elapsedTimeSeconds_
+            << " seconds.\n";
+    }
+
+    std::cout << "Simulation completed.\n";
+}
+
+void MissionSimulator::printMissionReport() const
+{
+    std::cout << "\n===== Mission Report =====\n";
+    std::cout << "Satellite: " << satellite_.getName() << '\n';
+    std::cout << "Altitude: " << satellite_.getAltitudeKm() << " km\n";
+    std::cout << "Mass: " << satellite_.getMassKg() << " kg\n";
+    std::cout << "Orbital velocity: "
+        << satellite_.calculateOrbitalVelocity() << " km/s\n";
+    std::cout << "Orbital period: "
+        << satellite_.calculateOrbitalPeriod() << " seconds\n";
+    std::cout << "Completed orbits: " << completedOrbits_ << '\n';
+    std::cout << "Mission elapsed time: "
+        << elapsedTimeSeconds_ << " seconds\n";
+}
+
+double MissionSimulator::getElapsedTimeSeconds() const
+{
+    return elapsedTimeSeconds_;
+}
+
+int MissionSimulator::getCompletedOrbits() const
+{
+    return completedOrbits_;
+}
