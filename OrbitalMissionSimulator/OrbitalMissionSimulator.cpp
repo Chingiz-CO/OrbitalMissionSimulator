@@ -64,5 +64,7 @@ int main()
 
     simulator.printMissionReport();
 
+    simulator.saveMissionReport("mission_report.txt");
+
     return 0;
 }

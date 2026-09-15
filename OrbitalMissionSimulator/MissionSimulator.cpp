@@ -1,6 +1,7 @@
 #include "MissionSimulator.h"
 #include <iostream>
 #include <iomanip>
+#include <fstream>
 
 MissionSimulator::MissionSimulator(const Satellite& satellite)
     : satellite_(satellite),
@@ -82,4 +83,31 @@ void MissionSimulator::changeOrbitAltitude(double newAltitudeKm)
     std::cout << "New orbital period: "
         << satellite_.calculateOrbitalPeriod()
         << " seconds\n";
+}
+
+void MissionSimulator::saveMissionReport(const std::string& filename) const
+{
+    std::ofstream file(filename);
+
+    if (!file.is_open())
+    {
+        std::cout << "Unable to save mission report.\n";
+        return;
+    }
+
+    file << "===== Mission Report =====\n";
+    file << "Satellite: " << satellite_.getName() << '\n';
+    file << "Altitude: " << satellite_.getAltitudeKm() << " km\n";
+    file << "Mass: " << satellite_.getMassKg() << " kg\n";
+    file << "Orbital velocity: "
+        << satellite_.calculateOrbitalVelocity() << " km/s\n";
+    file << "Orbital period: "
+        << satellite_.calculateOrbitalPeriod() << " seconds\n";
+    file << "Completed orbits: " << completedOrbits_ << '\n';
+    file << "Mission elapsed time: "
+        << elapsedTimeSeconds_ << " seconds\n";
+
+    file.close();
+
+    std::cout << "\nMission report saved to " << filename << '\n';
 }

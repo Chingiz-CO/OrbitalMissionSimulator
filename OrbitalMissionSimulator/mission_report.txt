@@ -1,0 +1,8 @@
+===== Mission Report =====
+Satellite: eplorer
+Altitude: 20 km
+Mass: 600 kg
+Orbital velocity: 7.89741 km/s
+Orbital period: 5084.69 seconds
+Completed orbits: 3
+Mission elapsed time: 16634.6 seconds
