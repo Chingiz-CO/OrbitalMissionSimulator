@@ -2,6 +2,7 @@
 #include <string>
 #include "Satellite.h"
 #include "MissionSimulator.h"
+#include <limits>
 
 int main()
 {
@@ -16,20 +17,38 @@ int main()
     std::getline(std::cin, satelliteName);
 
     std::cout << "Enter altitude (km): ";
-    std::cin >> altitudeKm;
+
+    while (!(std::cin >> altitudeKm) || altitudeKm <= 0)
+    {
+        std::cout << "Invalid altitude. Enter a positive number: ";
+
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    }
 
     std::cout << "Enter satellite mass (kg): ";
-    std::cin >> massKg;
+
+    while (!(std::cin >> massKg) || massKg <= 0)
+    {
+        std::cout << "Invalid mass. Enter a positive number: ";
+
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    }
 
     std::cout << "Enter number of orbits to simulate: ";
-    std::cin >> numberOfOrbits;
 
-    if (satelliteName.empty() ||
-        altitudeKm <= 0 ||
-        massKg <= 0 ||
-        numberOfOrbits <= 0)
+    while (!(std::cin >> numberOfOrbits) || numberOfOrbits <= 0)
     {
-        std::cout << "\nInvalid mission parameters.\n";
+        std::cout << "Invalid number of orbits. Enter a positive integer: ";
+
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    }
+
+    if (satelliteName.empty())
+    {
+        std::cout << "\nSatellite name cannot be empty.\n";
         return 1;
     }
 
